@@ -31,7 +31,7 @@ const CheckIcon = () => (
 // 1. Image Upload
 const ImageUpload = ({ onImageSelect }: { onImageSelect: (file: File) => void }) => {
   const [dragActive, setDragActive] = useState(false);
-  const [fileName, setFileName] = useState<string | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
   const handleDrag = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -43,29 +43,30 @@ const ImageUpload = ({ onImageSelect }: { onImageSelect: (file: File) => void })
     }
   }, []);
 
+  const handleFile = useCallback((file: File) => {
+    setPreviewUrl(URL.createObjectURL(file));
+    onImageSelect(file);
+  }, [onImageSelect]);
+
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      const file = e.dataTransfer.files[0];
-      setFileName(file.name);
-      onImageSelect(file);
+      handleFile(e.dataTransfer.files[0]);
     }
-  }, [onImageSelect]);
+  }, [handleFile]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      setFileName(file.name);
-      onImageSelect(file);
+      handleFile(e.target.files[0]);
     }
   };
 
   return (
     <div
-      className={`relative w-full h-64 border-2 border-dashed rounded-lg transition-all duration-300 flex flex-col items-center justify-center cursor-pointer 
+      className={`relative w-full h-64 border-2 border-dashed rounded-lg transition-all duration-300 flex flex-col items-center justify-center cursor-pointer overflow-hidden
         ${dragActive ? 'border-accent bg-accent-dim/10' : 'border-gray-700 bg-gray-900/50 hover:border-gray-500'}`}
       onDragEnter={handleDrag}
       onDragLeave={handleDrag}
@@ -74,18 +75,17 @@ const ImageUpload = ({ onImageSelect }: { onImageSelect: (file: File) => void })
     >
       <input
         type="file"
-        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20"
         onChange={handleChange}
         accept="image/*"
       />
 
-      {fileName ? (
-        <div className="text-center z-10">
-          <div className="flex items-center gap-2 justify-center mb-2">
-            <CheckIcon />
-            <span className="text-green-400 font-mono text-sm">IMAGE LOADED</span>
+      {previewUrl ? (
+        <div className="absolute inset-0 w-full h-full z-10">
+          <img src={previewUrl} alt="Preview" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
+            <p className="text-white font-medium">Click or Drag to Change</p>
           </div>
-          <p className="text-gray-300 font-medium">{fileName}</p>
         </div>
       ) : (
         <div className="text-center z-10 pointer-events-none">
