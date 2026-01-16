@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Navbar from "@/components/Navbar";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -17,6 +18,10 @@ export const metadata: Metadata = {
   description: "Advanced vehicle geometry classification and analysis engineering console.",
 };
 
+import { CustomCursor } from "@/components/ui/CustomCursor";
+
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,6 +32,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <CustomCursor />
+        <Navbar />
         {children}
       </body>
     </html>
