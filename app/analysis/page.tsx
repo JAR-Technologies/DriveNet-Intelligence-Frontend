@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback } from 'react';
+import { API_ENDPOINTS } from '@/config/api';
 
 // --- Type Definitions ---
 interface VehicleMetadata {
@@ -171,7 +172,7 @@ export default function Home() {
       formData.append('stance', metadata.stance);
       formData.append('wheel_ratio', metadata.wheelSize); // Mapped to wheel_ratio
 
-      const response = await fetch('http://localhost:8000/api/analyze', {
+      const response = await fetch(API_ENDPOINTS.ANALYZE, {
         method: 'POST',
         body: formData,
       });
