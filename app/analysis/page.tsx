@@ -52,9 +52,9 @@ export default function AnalysisPage() {
     image: null,
     metadata: {
       groundClearance: 'low',
-      wheelArch: 'round',
-      stance: 'narrow',
-      wheelSize: 'balanced'
+      wheelArch: 'smooth',
+      stance: 'low profile',
+      wheelSize: 'small'
     },
     result: null,
     status: 'IDLE',
@@ -184,9 +184,9 @@ export default function AnalysisPage() {
         image: null,
         metadata: {
           groundClearance: 'low',
-          wheelArch: 'round',
-          stance: 'narrow',
-          wheelSize: 'balanced'
+          wheelArch: 'smooth',
+          stance: 'low profile',
+          wheelSize: 'small'
         },
         result: null,
         status: 'IDLE',
@@ -301,7 +301,7 @@ export default function AnalysisPage() {
                       value={metadata.stance}
                       onChange={(v) => updateMetadata('stance', v)}
                       options={[
-                        { label: "Low Profile", value: "low_profile" },
+                        { label: "Low Profile", value: "low profile" },
                         { label: "Normal", value: "normal" },
                         { label: "Tall", value: "tall" }
                       ]}
