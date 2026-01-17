@@ -99,8 +99,8 @@ export const AnalysisResult = ({ result, image, onReset }: AnalysisResultProps) 
                 </div>
 
                 {/* Decision Logic Box */}
-                <div className="bg-gray-900/30 p-6 border-l-2 border-yellow-500 rounded-r mb-8 relative z-10">
-                    <div className="text-[10px] text-yellow-500 uppercase tracking-widest mb-2">
+                <div className="bg-gray-900/30 p-6 border-l-2 border-cyan-500 rounded-r mb-8 relative z-10">
+                    <div className="text-[10px] text-cyan-500 uppercase tracking-widest mb-2">
                         Constraint Logic Active
                     </div>
                     <p className="text-sm text-gray-300 leading-relaxed">
@@ -111,8 +111,8 @@ export const AnalysisResult = ({ result, image, onReset }: AnalysisResultProps) 
                 {/* Final Decision */}
                 <div className="flex flex-wrap items-center justify-between gap-4 relative z-10">
                     <div className="flex items-center gap-3">
-                        <div className={`w-2 h-2 rounded-full animate-pulse ${result.decision === 'REJECT' ? 'bg-red-500' : 'bg-green-500'}`}></div>
-                        <span className={`text-xs font-bold uppercase tracking-widest ${result.decision === 'REJECT' ? 'text-red-500' : 'text-green-500'}`}>
+                        <div className={`w-2 h-2 rounded-full animate-pulse ${result.decision === 'FLAG_FOR_REVIEW' ? 'bg-orange-500' : 'bg-green-500'}`}></div>
+                        <span className={`text-xs font-bold uppercase tracking-widest ${result.decision === 'FLAG_FOR_REVIEW' ? 'text-orange-500' : 'text-green-500'}`}>
                             Decision: {result.decision}
                         </span>
                     </div>

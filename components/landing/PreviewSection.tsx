@@ -68,8 +68,8 @@ export const PreviewSection = () => {
                         </div>
                     </div>
 
-                    <div className="bg-gray-900/30 p-6 border-l-2 border-yellow-500 rounded-r mb-8 relative z-10">
-                        <div className="text-[10px] text-yellow-500 uppercase tracking-widest mb-2">
+                    <div className="bg-gray-900/30 p-6 border-l-2 border-cyan-500 rounded-r mb-8 relative z-10">
+                        <div className="text-[10px] text-cyan-500 uppercase tracking-widest mb-2">
                             Constraint Logic Active
                         </div>
                         <p className="text-sm text-gray-300 leading-relaxed">
